@@ -131,7 +131,10 @@ Select_PHP()
         if [[ -s /usr/local/php8.2/sbin/php-fpm && -s /usr/local/nginx/conf/enable-php8.2.conf && -s /etc/init.d/php-fpm8.2 ]]; then
             Echo_Green "14: PHP 8.2 [found]"
         fi
-        Echo_Yellow "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 or 14): "
+        if [[ -s /usr/local/php8.3/sbin/php-fpm && -s /usr/local/nginx/conf/enable-php8.3.conf && -s /etc/init.d/php-fpm8.3 ]]; then
+            Echo_Green "14: PHP 8.3 [found]"
+        fi
+        Echo_Yellow "Enter your choice (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 14 or 15): "
         read php_select
         case "${php_select}" in
             1)
@@ -203,6 +206,11 @@ Select_PHP()
                 echo "Current selection: PHP `/usr/local/php8.2/bin/php-config --version`"
                 PHP_Path='/usr/local/php8.2'
                 PHPFPM_Initd='/etc/init.d/php-fpm8.2'
+                ;;
+            15)
+                echo "Current selection: PHP `/usr/local/php8.3/bin/php-config --version`"
+                PHP_Path='/usr/local/php8.3'
+                PHPFPM_Initd='/etc/init.d/php-fpm8.3'
                 ;;
             *)
                 echo "Default,Current selection: PHP ${Cur_PHP_Version}"
